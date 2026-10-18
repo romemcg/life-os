@@ -50,6 +50,8 @@ Someone in a transition (between jobs, rebuilding finances, restarting routines)
 
 ## Try the demo
 
+**Live demo:** see the link at the top of this page, or run it yourself below.
+
 The demo loads a fictional person about five weeks into the plan, so every screen has data.
 
 ```bash

@@ -11,8 +11,12 @@ declare global {
   var __lifeosDb: Database.Database | undefined;
 }
 
+// Hosted demo (Vercel): fictional data in a throwaway database under /tmp, rebuilt on every cold start.
+export const IS_DEMO = process.env.LIFEOS_DEMO === "1" || !!process.env.VERCEL;
+
 export function dbPath() {
-  return path.resolve(process.env.LIFEOS_DB_PATH || "./data/life-os.db");
+  if (process.env.LIFEOS_DB_PATH) return path.resolve(process.env.LIFEOS_DB_PATH);
+  return process.env.VERCEL ? "/tmp/life-os-demo.db" : path.resolve("./data/life-os.db");
 }
 
 function migrate(db: Database.Database) {
@@ -106,7 +110,7 @@ export function getDb(): Database.Database {
     db.prepare(`INSERT OR REPLACE INTO settings(key,value,updated_at) VALUES('seed_v9','1',?)`).run(now());
   }
   // Demo mode: a fictional person with five weeks of history (see lib/demo.ts). Never touches a real database.
-  if (process.env.LIFEOS_DEMO === "1" && !db.prepare(`SELECT 1 FROM settings WHERE key='demo_seeded'`).get()) {
+  if (IS_DEMO && !db.prepare(`SELECT 1 FROM settings WHERE key='demo_seeded'`).get()) {
     db.transaction(() => seedDemo(db, insertRow))();
   }
   fillTaskLinks(db);
