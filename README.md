@@ -6,6 +6,8 @@ I designed and built it as a product-management project: I started from one prob
 
 ![Dashboard](docs/screenshots/01-dashboard.png)
 
+> **[Open the live demo](https://lifeos35-demo.vercel.app)** (fictional data, nothing to sign in to)
+>
 > **[Watch the 98-second walkthrough](docs/demo.mp4)** (click, then the play button). All data in the screenshots and the demo is fictional. See [Try the demo](#try-the-demo).
 
 ## The problem
@@ -50,7 +52,7 @@ Someone in a transition (between jobs, rebuilding finances, restarting routines)
 
 ## Try the demo
 
-**Live demo:** see the link at the top of this page, or run it yourself below.
+**Live demo:** https://lifeos35-demo.vercel.app, or run it yourself below.
 
 The demo loads a fictional person about five weeks into the plan, so every screen has data.
 
