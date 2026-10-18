@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* LIFE OS design tokens.
+   Palette: mist (page), paper (surfaces), lagoon (deep panels and ink), tide (actions), sun (the "you are here" marker). */
+:root {
+  --font-sans: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  /* Headlines and big figures use the system serif (New York on Apple devices). */
+  --font-display: ui-serif, "New York", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  /* Dark theme (RGB channels so Tailwind opacity modifiers work) */
+  --ink-950: 7 19 21; --ink-900: 12 28 31; --ink-850: 16 36 39; --ink-800: 21 45 49; --ink-700: 32 60 64; --ink-600: 50 84 88;
+  --fog-100: 236 244 243; --fog-300: 187 204 203; --fog-400: 140 160 160; --fog-500: 104 124 125;
+  --teal-200: 153 236 222; --teal-300: 94 222 202; --teal-400: 45 200 180; --teal-500: 20 176 158; --teal-600: 14 140 126;
+  --sun: 242 193 78;
+  --chart-grid: #1b3236; --chart-axis: #6b8284; --chart-tip-bg: #0c1c1f; --chart-tip-border: #26474b; --chart-cursor: #102427; --chart-label: #bbcccb;
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 8px 24px -12px rgba(0, 0, 0, 0.5);
+  --shadow-lift: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 16px 36px -14px rgba(0, 0, 0, 0.65);
+  --hero-from: #0a3337; --hero-to: #11555a;
+  --flame: 251 146 60;
+  color-scheme: dark;
+}
+html.light {
+  --ink-950: 242 245 243; --ink-900: 255 255 255; --ink-850: 248 250 249; --ink-800: 238 243 241; --ink-700: 224 231 228; --ink-600: 200 211 207;
+  --fog-100: 14 38 42; --fog-300: 44 68 72; --fog-400: 88 110 114; --fog-500: 124 142 144;
+  --teal-200: 8 70 72; --teal-300: 12 108 106; --teal-400: 18 148 140; --teal-500: 13 120 118; --teal-600: 8 92 94;
+  --sun: 226 168 37;
+  --chart-grid: #e6ece9; --chart-axis: #86989a; --chart-tip-bg: #ffffff; --chart-tip-border: #dbe4e1; --chart-cursor: #eef3f1; --chart-label: #2c4448;
+  --shadow-card: 0 1px 2px rgba(14, 38, 42, 0.05);
+  --shadow-lift: 0 2px 4px rgba(14, 38, 42, 0.05), 0 12px 28px -12px rgba(14, 38, 42, 0.16);
+  --hero-from: #0a3337; --hero-to: #11555a;
+  --flame: 234 88 12;
+  color-scheme: light;
+}
+
+html, body { background: rgb(var(--ink-950)); color: rgb(var(--fog-100)); }
+body {
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(1000px 520px at 90% -10%, rgb(var(--teal-400) / 0.11), transparent 62%),
+    radial-gradient(820px 480px at -8% 104%, rgb(var(--sun) / 0.08), transparent 60%);
+  background-attachment: fixed;
+}
+h1, h2, h3, .font-display { font-family: var(--font-display); letter-spacing: -0.012em; }
+/* Big figures: serif, lining, tabular */
+.num { font-family: var(--font-display); font-variant-numeric: lining-nums tabular-nums; letter-spacing: -0.02em; }
+
+@layer components {
+  .card { @apply rounded-2xl border border-ink-700/80; background: linear-gradient(180deg, rgb(var(--ink-900)), rgb(var(--ink-850))); box-shadow: var(--shadow-card); }
+  .side-surface { background: linear-gradient(180deg, rgb(var(--ink-900)), rgb(var(--ink-850))); }
+  .card-pad { @apply p-4 sm:p-5; }
+  .card-hover { @apply transition-colors duration-150; }
+  .card-hover:hover { border-color: rgb(var(--teal-500) / 0.45); }
+  .h-title { @apply text-[28px] font-semibold leading-tight text-fog-100 sm:text-[34px] sm:leading-[1.15]; }
+  .h-section { @apply text-[17px] font-semibold leading-snug text-fog-100; }
+  .eyebrow { @apply text-xs font-medium text-fog-400; }
+  .muted { @apply text-fog-400; }
+  .btn { @apply inline-flex items-center justify-center gap-1.5 rounded-xl px-3.5 py-2 text-sm font-medium transition-colors duration-150 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400/60; }
+  .btn-primary { @apply btn text-white; background: linear-gradient(135deg, rgb(var(--teal-400)), rgb(var(--teal-600))); box-shadow: 0 1px 2px rgb(var(--teal-600) / 0.35); }
+  .btn-primary:hover { filter: brightness(1.06); }
+  .btn-ghost { @apply btn text-fog-300 hover:bg-ink-800 hover:text-fog-100; }
+  .btn-outline { @apply btn border border-ink-600 bg-ink-900 text-fog-100 hover:border-teal-500/60 hover:bg-ink-850; }
+  .btn-danger { @apply btn text-rose-500 hover:bg-rose-500/10; }
+  .input { @apply w-full rounded-xl border border-ink-600 bg-ink-900 px-3 py-2 text-sm text-fog-100 transition-shadow placeholder:text-fog-500 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/15; }
+  .label { @apply mb-1 block text-xs font-medium text-fog-300; }
+  .chip { @apply inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[11px] font-medium leading-4; }
+  .tabnum { font-variant-numeric: tabular-nums; }
+  .text-gradient { color: rgb(var(--teal-400)); }
+  .hero { @apply relative overflow-hidden rounded-[28px] text-white; background: radial-gradient(520px 300px at 92% -6%, rgba(134, 220, 205, 0.22), transparent 62%), radial-gradient(460px 280px at -4% 108%, rgba(242, 193, 78, 0.12), transparent 60%), linear-gradient(135deg, var(--hero-from), var(--hero-to)); }
+  .hero-chip { @apply inline-flex items-center gap-1.5 rounded-full bg-white/15 px-2.5 py-1 text-[11px] font-semibold text-white ring-1 ring-white/20; }
+}
+
+html:not(.light) input[type="date"]::-webkit-calendar-picker-indicator, html:not(.light) input[type="time"]::-webkit-calendar-picker-indicator, html:not(.light) input[type="month"]::-webkit-calendar-picker-indicator { filter: invert(0.8); }
+input[type="range"], input[type="checkbox"] { accent-color: rgb(var(--teal-500)); }
+::selection { background: rgb(var(--teal-500) / 0.28); }
+* { scrollbar-width: thin; scrollbar-color: rgb(var(--ink-600)) transparent; }
+
+/* Motion */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.fade-up { animation: fadeUp 0.4s cubic-bezier(.2,.7,.2,1) both; }
+.stagger > * { animation: fadeUp 0.45s cubic-bezier(.2,.7,.2,1) both; }
+.stagger > *:nth-child(2) { animation-delay: 50ms; } .stagger > *:nth-child(3) { animation-delay: 100ms; }
+.stagger > *:nth-child(4) { animation-delay: 150ms; } .stagger > *:nth-child(5) { animation-delay: 200ms; }
+.stagger > *:nth-child(6) { animation-delay: 250ms; } .stagger > *:nth-child(n+7) { animation-delay: 300ms; }
+@keyframes pop { 0% { transform: scale(1); } 40% { transform: scale(1.28); } 70% { transform: scale(0.92); } 100% { transform: scale(1); } }
+.pop { animation: pop 0.38s cubic-bezier(.3,1.5,.5,1); }
+@keyframes ring { from { box-shadow: 0 0 0 0 rgb(var(--teal-500) / 0.45); } to { box-shadow: 0 0 0 10px rgb(var(--teal-500) / 0); } }
+.ring-pulse { animation: ring 0.6s ease-out; }
+@keyframes flicker { 0%, 100% { transform: scale(1) rotate(-2deg); } 50% { transform: scale(1.08) rotate(2deg); } }
+.flame { animation: flicker 1.6s ease-in-out infinite; transform-origin: 50% 90%; color: rgb(var(--flame)); }
+@keyframes confetti { 0% { transform: translate3d(0,0,0) rotate(0); opacity: 1; } 100% { transform: translate3d(var(--dx), var(--dy), 0) rotate(var(--rot)); opacity: 0; } }
+.confetti-piece { position: absolute; width: 8px; height: 12px; border-radius: 2px; animation: confetti 1.1s cubic-bezier(.15,.6,.3,1) forwards; }
+@keyframes shimmer { from { background-position: -200% 0; } to { background-position: 200% 0; } }
+.skeleton { background: linear-gradient(90deg, rgb(var(--ink-800)) 25%, rgb(var(--ink-700)) 50%, rgb(var(--ink-800)) 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; border-radius: 10px; }
+/* The climb: steps rise once on load, then the marker lands on the current step. */
+@keyframes rise { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+.climb-step { transform-origin: bottom; animation: rise 0.7s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(var(--i, 0) * 90ms + 120ms); }
+@keyframes land { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: none; } }
+.climb-marker { animation: land 0.55s cubic-bezier(.3,1.3,.5,1) both; animation-delay: 950ms; }
+@keyframes beacon { 0% { box-shadow: 0 0 0 0 rgb(var(--sun) / 0.55); } 100% { box-shadow: 0 0 0 14px rgb(var(--sun) / 0); } }
+.beacon { animation: beacon 2.4s ease-out 1.6s infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .fade-up, .stagger > *, .pop, .ring-pulse, .flame, .confetti-piece, .skeleton, .climb-step, .climb-marker, .beacon { animation: none !important; }
+  * { transition: none !important; }
+}
+
+/* Grid/flex children must be allowed to shrink so truncated text never widens the page on mobile. */
+.grid > *, .flex-1 { min-width: 0; }
+
+/* Light theme: deepen pastel status colours so they stay readable on white */
+html.light .text-amber-300, html.light .text-amber-200, html.light .text-amber-200\/90, html.light .text-amber-200\/80 { color: #b45309; }
+html.light .text-rose-300, html.light .text-rose-200, html.light .text-rose-400 { color: #be123c; }
+html.light .text-sky-300 { color: #0369a1; }
+html.light .text-violet-300 { color: #6d28d9; }
+html.light .border-amber-400\/30 { border-color: rgba(180, 83, 9, 0.35); }
+
+/* Learn: celebration + streak flame */
+.confetti { position: absolute; top: -12px; width: 8px; height: 14px; border-radius: 2px; animation: confetti 1.5s cubic-bezier(.2,.7,.3,1) forwards; }
+@keyframes confetti { to { transform: translate(var(--dx), 105vh) rotate(var(--rot)); opacity: 0; } }
+.flame { animation: flicker 1.8s ease-in-out infinite; transform-origin: 50% 90%; }
+@keyframes flicker { 0%,100% { transform: scale(1) rotate(-2deg); } 50% { transform: scale(1.12) rotate(2deg); } }
+@media (prefers-reduced-motion: reduce) { .confetti, .flame { animation: none; } .confetti { display: none; } }

@@ -1,0 +1,42 @@
+{
+  "name": "life-os",
+  "version": "0.1.0",
+  "private": true,
+  "description": "LIFE OS - personal execution system (local-first)",
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "demo": "rm -f data/demo.db data/demo.db-shm data/demo.db-wal && next build && LIFEOS_DEMO=1 LIFEOS_DB_PATH=./data/demo.db next start -p 3100"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.57.0",
+    "next": "15.5",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "recharts": "2.15",
+    "server-only": "^0.0.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "autoprefixer": "^10.6.1",
+    "postcss": "^8.5.30",
+    "tailwindcss": "3.4",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.7"
+  },
+  "allowScripts": {
+    "better-sqlite3@13.0.3": true
+  }
+}
