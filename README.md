@@ -28,7 +28,7 @@ Someone in a transition (between jobs, rebuilding finances, restarting routines)
 | **Money** | Actual balances and debts (never invented), runway, debt payoff (avalanche vs snowball), spending log and clearly labelled scenarios. |
 | **Habits, Health, Reading, Learning** | Habit streaks with a "minimum version" for hard days, optional body metrics, a one-book-a-month plan, and a learning hub for certifications and languages. |
 | **Weekly review** | A short review that pulls in the week's data, so decisions are made from facts. |
-| **Coach (optional)** | An in-app assistant that reads a snapshot of your own data and can add tasks or log spending. Needs your own Anthropic API key; the app works fully without it. |
+| **Coach (optional)** | An in-app assistant that reads a snapshot of your own data and can add tasks or log spending. |
 
 ![Career pipeline](docs/screenshots/03-career-pipeline.png)
 
