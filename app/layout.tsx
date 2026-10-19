@@ -2,6 +2,7 @@ import { UpdateWatcher } from "@/components/UpdateWatcher";
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Nav, SubNav } from "@/components/Nav";
+import { FocusEngine } from "@/components/Focus";
 import { THEME_BOOT } from "@/lib/theme-boot";
 
 const DEMO = process.env.LIFEOS_DEMO === "1" || !!process.env.VERCEL;
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen font-sans">
         <Nav />
         <UpdateWatcher />
+        <FocusEngine />
         <main className="mx-auto max-w-6xl px-4 pb-28 pt-5 sm:px-6 lg:ml-60 lg:max-w-none lg:px-10 lg:pb-12 lg:pt-8">
           <div className="mx-auto max-w-6xl">
             {DEMO && (

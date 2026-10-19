@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { AlertTriangle, CircleAlert, ChevronDown, Lock, Wallet, HeartPulse, Briefcase, Sunrise } from "lucide-react";
+import { AlertTriangle, CircleAlert, ChevronDown, Lock, Wallet, HeartPulse, Briefcase, Sunrise, Repeat, Send, BookOpen, Zap } from "lucide-react";
+import { WeekPulse, paceStatus, scoreStatus, type PulseRow } from "@/components/WeekPulse";
 import { StreakPill, ChainCalendar, greeting } from "@/components/Consistency";
 import { useStreak } from "@/components/useStreak";
 import { Card, Progress, PillarDot, clsx } from "@/components/ui";
@@ -133,12 +134,35 @@ export default function Dashboard() {
     { href: "/today", label: "Log spending", sub: "Takes 10 seconds", Icon: Wallet },
     { href: "/career", label: "Career", sub: `${appsWeek} of ${appTarget} applications this week`, Icon: Briefcase },
   ];
-  const weekRows = [
-    { href: "/today", label: "Routines", value: routineTarget ? (routineDone / routineTarget) * 100 : null, text: routineTarget ? `${routineDone} of ${routineTarget} done` : "None due yet" },
-    { href: "/morning", label: "Mornings", value: ((Math.min(bibleDays, 6) + Math.min(medDays, 5)) / 11) * 100, text: `${bibleDays} readings, ${medDays} meditations` },
-    { href: "/career", label: "Applications", value: appTarget ? (appsWeek / appTarget) * 100 : null, text: `${appsWeek} of ${appTarget} sent` },
-    { href: "/learning?tab=books", label: "Reading", value: book?.pages_total ? ((book.current_page ?? 0) / book.pages_total) * 100 : book ? 0 : null, text: book ? String(book.title) : "No book yet" },
-    { href: "/check-ins", label: "Energy", value: avgEnergy === null ? null : (avgEnergy / 5) * 100, text: avgEnergy === null ? "No check-ins yet" : `${avgEnergy.toFixed(1)} out of 5` },
+  // ---- your week: each row judged against where you should be by today
+  const dow = diffDays(mon, today) + 1;
+  const paceBy = (target: number) => Math.floor((target * dow) / 7);
+  const plural = (n: number, w: string) => `${n} ${w}${n === 1 ? "" : "s"}`;
+  const routineDueBefore = routines.reduce((n, t) => n + occurrencesBetween(t, mon, addDays(today, -1)), 0);
+  const mornTarget = 11; // 6 Bible readings + 5 meditations a week
+  const mornDone = Math.min(bibleDays, 6) + Math.min(medDays, 5);
+  const appsExp = paceBy(appTarget);
+  const monthDays = new Date(Number(today.slice(0, 4)), Number(today.slice(5, 7)), 0).getDate();
+  const bookTotal = Number(book?.pages_total || 0);
+  const bookPage = Number(book?.current_page || 0);
+  const bookExp = Math.floor((bookTotal * Number(today.slice(8, 10))) / monthDays);
+  const catchUp = (gap: number, w: string) => `${plural(gap, w)} today to catch up`;
+  const weekRows: PulseRow[] = [
+    { href: "/today", label: "Routines", Icon: Repeat, done: routineDone, target: routineTarget, expected: routineDueBefore,
+      status: paceStatus(routineDone, routineDueBefore, routineTarget),
+      hint: !routineTarget ? "None due yet" : routineDone >= routineTarget ? "All due so far are done" : `${routineTarget - routineDone} still due so far` },
+    { href: "/morning", label: "Mornings", Icon: Sunrise, done: mornDone, target: mornTarget, expected: paceBy(mornTarget),
+      status: paceStatus(mornDone, paceBy(mornTarget), mornTarget),
+      hint: `${plural(bibleDays, "reading")}, ${plural(medDays, "meditation")}` },
+    { href: "/career", label: "Applications", Icon: Send, done: appsWeek, target: appTarget, expected: appsExp,
+      status: paceStatus(appsWeek, appsExp, appTarget),
+      hint: appsWeek >= appTarget ? "Weekly target hit" : appsWeek < appsExp ? `Send ${catchUp(appsExp - appsWeek, "application").replace(/ applications?/, "")}` : `${appTarget - appsWeek} to go this week` },
+    { href: "/learning?tab=books", label: "Reading", Icon: BookOpen, done: bookPage, target: bookTotal, expected: bookExp,
+      status: book ? paceStatus(bookPage, bookExp, bookTotal) : "none",
+      hint: !book ? "No book yet" : bookPage < bookExp ? `${bookExp - bookPage} pages behind · ${book.title}` : String(book.title) },
+    { href: "/check-ins", label: "Energy", Icon: Zap, kind: "score", done: avgEnergy ?? 0, target: 5, expected: 0,
+      status: scoreStatus(avgEnergy),
+      hint: avgEnergy === null ? "No check-ins yet" : `Average of ${plural(energy.length, "check-in")}` },
   ];
 
   return (
@@ -201,20 +225,7 @@ export default function Dashboard() {
 
           <div className="lg:hidden"><Upcoming today={today} days={7} /></div>
 
-          <section>
-            <div className="mb-1 flex items-baseline justify-between gap-3"><h2 className="h-section">Your week</h2><span className="text-xs muted">{fmtDate(mon, { year: false })} to {fmtDate(sun, { year: false })}</span></div>
-            <ul>
-              {weekRows.map((r) => (
-                <li key={r.label} className="border-t border-ink-700/70 first:border-t-0">
-                  <Link href={r.href} className="flex items-center gap-3 py-3 hover:text-teal-300">
-                    <span className="w-24 shrink-0 text-sm font-medium">{r.label}</span>
-                    <Progress className="flex-1" value={r.value ?? 0} color="rgb(var(--teal-500))" />
-                    <span className="w-28 shrink-0 truncate text-right text-xs muted sm:w-40" title={r.text}>{r.text}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
+          <WeekPulse rows={weekRows} range={`${fmtDate(mon, { year: false })} to ${fmtDate(sun, { year: false })}`} dayOfWeek={dow} />
 
           <details className="group border-t border-ink-700/80 pt-4">
             <summary className="flex cursor-pointer list-none items-center justify-between gap-3 [&::-webkit-details-marker]:hidden">

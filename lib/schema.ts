@@ -245,6 +245,12 @@ export const TABLES = {
     required: ["date", "minutes"],
     orderBy: "date DESC, id DESC",
   },
+  focus_sessions: {
+    // one row per finished focus block from the focus timer
+    columns: { date: "text", start_time: "text", minutes: "real", task_id: "int", label: "text" },
+    required: ["date", "minutes"],
+    orderBy: "date DESC, id DESC",
+  },
   text_cache: {
     columns: { key: "text", text: "text", reference: "text", translation: "text" },
     required: ["key"],

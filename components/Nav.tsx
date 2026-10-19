@@ -9,6 +9,7 @@ import { Logo } from "./Logo";
 import { StreakPill } from "./Consistency";
 import { useStreak } from "./useStreak";
 import { useSettings, useToday } from "@/lib/client";
+import { FocusPill } from "./Focus";
 
 type Sub = { href: string; label: string };
 type Group = { label: string; href: string; icon: typeof Sun; subs?: Sub[] };
@@ -78,6 +79,7 @@ export function Nav() {
         <Brand />
         <div className="mt-8 flex-1 overflow-y-auto"><Links /></div>
         <div className="space-y-3 px-1">
+          <FocusPill className="w-full justify-center" />
           <SideStreak />
           <Link href="/settings" className={clsx("flex items-center gap-2.5 rounded-lg px-1.5 py-2 text-sm", path === "/settings" ? "text-fog-100" : "text-fog-400 hover:text-fog-100")}><Settings size={16} />Settings</Link>
           <ThemeToggle compact />
@@ -87,7 +89,10 @@ export function Nav() {
 
       <header className="sticky top-0 z-30 flex items-center justify-between border-b border-ink-700/80 bg-ink-900/95 px-4 py-3 backdrop-blur lg:hidden">
         <Brand />
-        <button className="btn-ghost p-1.5" aria-label="Open menu" onClick={() => setOpen(true)}><Menu size={20} /></button>
+        <div className="flex items-center gap-2">
+          <FocusPill />
+          <button className="btn-ghost p-1.5" aria-label="Open menu" onClick={() => setOpen(true)}><Menu size={20} /></button>
+        </div>
       </header>
       {open && (
         <div className="fixed inset-0 z-50 bg-slate-950/50 backdrop-blur-sm lg:hidden" onClick={() => setOpen(false)}>

@@ -18,6 +18,7 @@ import Link from "next/link";
 import { WeeklyTargets, Upcoming } from "@/components/widgets";
 import { TodayCheckIns } from "@/components/CheckIns";
 import { VerseCard } from "@/components/Verse";
+import { FocusCard } from "@/components/Focus";
 import { useSettings, useToday, useList, api, money, type Row } from "@/lib/client";
 import { MODES, type DayMode } from "@/lib/priority";
 import { ageOn, fmtDate, weekRange, addDays, relativeDay } from "@/lib/dates";
@@ -90,6 +91,8 @@ export default function TodayPage() {
     { value: "standard", Icon: Zap, color: "#14b09e" },
     { value: "deep", Icon: Target, color: "#6366f1" },
   ];
+  const focusTasks = plan.planned.map((p) => p.task as Row);
+
   return (
     <div>
       <section className="hero fade-up mb-5 p-5 sm:p-7">
@@ -134,6 +137,7 @@ export default function TodayPage() {
 
       <div className="grid gap-4 lg:grid-cols-3">
         <div className="space-y-4 lg:col-span-2">
+          <div className="lg:hidden"><FocusCard planned={focusTasks} anchor /></div>
           <div className="lg:hidden"><DailyBite today={today} /></div>
           <Card title={view === "timeline" ? "Your day" : "Everything for today"} action={<Segmented<"timeline" | "areas"> size="sm" value={view} onChange={chooseView} options={[{ value: "timeline", label: "Timeline" }, { value: "areas", label: "By area" }]} />}>
             {view === "timeline"
@@ -145,6 +149,7 @@ export default function TodayPage() {
         </div>
 
         <div className="space-y-4">
+          <div className="hidden lg:block"><FocusCard planned={focusTasks} /></div>
           <div className="hidden lg:block"><DailyBite today={today} /></div>
           <VerseCard today={today} translation={settings.bible_translation || "web"} compact />
           <MissedCard today={today} />
