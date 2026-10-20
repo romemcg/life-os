@@ -176,10 +176,10 @@ export default function Dashboard() {
             <p className="mt-2 text-base text-white/80">{message}</p>
             <div className="mt-5 max-w-sm">
               <div className="mb-1.5 flex justify-between text-xs text-white/70"><span>Today</span><span className="tabnum">{plan.doneToday.length} of {plannedToday} done</span></div>
-              <div className="h-1.5 overflow-hidden rounded-full bg-white/15"><div className="h-full rounded-full bg-[#86dccd] transition-all duration-1000" style={{ width: `${todayPct}%` }} /></div>
+              <div className="h-1.5 overflow-hidden rounded-full bg-white/15"><div className="h-full rounded-full bg-[#7dd3fc] transition-all duration-1000" style={{ width: `${todayPct}%` }} /></div>
             </div>
             <div className="mt-5 flex flex-wrap items-center gap-3">
-              <Link href="/today" className="inline-flex items-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-[#0a3337] transition hover:bg-white/90 active:scale-[0.98]">Open today</Link>
+              <Link href="/today" className="inline-flex items-center rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[#0a162e] transition hover:-translate-y-0.5 hover:bg-white/90 active:scale-[0.98]">Open today</Link>
               {!streak.loading && <StreakPill current={streak.current} todayDone={streak.todayDone} onHero />}
             </div>
             </div>
@@ -239,16 +239,16 @@ export default function Dashboard() {
                     <PillarDot color={a.p.color} />
                     <span className="min-w-0 flex-1 truncate text-sm">{a.p.name}</span>
                     {a.locked ? <span className="inline-flex items-center gap-1 text-xs text-fog-500"><Lock size={11} />Opens at stage {a.firstStage}</span>
-                      : a.always ? <span className="text-xs text-violet-300">Always on, {conns.rows.length} connection{conns.rows.length === 1 ? "" : "s"} this week</span>
+                      : a.always ? <span className="text-xs text-fog-400">Always on, {conns.rows.length} connection{conns.rows.length === 1 ? "" : "s"} this week</span>
                       : <><Progress className="w-20 sm:w-28" value={a.pct ?? 0} color={a.p.color} /><span className="w-14 shrink-0 text-right text-xs tabnum muted">{a.nowDone} of {a.nowTotal}</span></>}
                   </Link>
                 </li>
               ))}
               <li className="border-t border-ink-700/70">
                 <Link href="/finances" className="flex items-center gap-3 py-2.5 hover:text-teal-300">
-                  <PillarDot color="#4fb8ab" />
+                  <PillarDot color="#3b82f6" />
                   <span className="min-w-0 flex-1 truncate text-sm">Emergency fund</span>
-                  {!fin.hasBaseline ? <span className="text-xs muted">Enter your baseline first</span> : <><Progress className="w-20 sm:w-28" value={efTarget > 0 ? (efSaved / efTarget) * 100 : 0} color="#4fb8ab" /><span className="w-24 shrink-0 truncate text-right text-xs tabnum muted sm:w-40">{efSaved > 0 ? `${money(efSaved, cur)} of ${money(efTarget, cur)}` : `Goal ${money(efTarget, cur)}`}</span></>}
+                  {!fin.hasBaseline ? <span className="text-xs muted">Enter your baseline first</span> : <><Progress className="w-20 sm:w-28" value={efTarget > 0 ? (efSaved / efTarget) * 100 : 0} color="#3b82f6" /><span className="w-24 shrink-0 truncate text-right text-xs tabnum muted sm:w-40">{efSaved > 0 ? `${money(efSaved, cur)} of ${money(efTarget, cur)}` : `Goal ${money(efTarget, cur)}`}</span></>}
                 </Link>
               </li>
             </ul>

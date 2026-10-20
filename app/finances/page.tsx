@@ -208,7 +208,7 @@ function Actuals({ fin, today, cur, settings, save, onAdd, onEdit }: { fin: Fin;
                     <YAxis {...AXIS} tickFormatter={k} width={40} />
                     <Tooltip {...TT} formatter={(v: number) => money(v, cur)} />
                     <ReferenceLine y={0} stroke="#f87171" strokeDasharray="4 4" />
-                    <Line type="monotone" dataKey="Cash" stroke="#4fb8ab" strokeWidth={2} dot={false} />
+                    <Line type="monotone" dataKey="Cash" stroke="#3b82f6" strokeWidth={2} dot={false} />
                     <Line type="monotone" dataKey="Debt" stroke="#e0a36a" strokeWidth={2} dot={false} />
                     <Legend wrapperStyle={{ fontSize: 11 }} />
                   </LineChart>
@@ -226,7 +226,7 @@ function Actuals({ fin, today, cur, settings, save, onAdd, onEdit }: { fin: Fin;
                   <XAxis type="number" {...AXIS} tickFormatter={k} />
                   <YAxis type="category" dataKey="name" {...AXIS} width={96} />
                   <Tooltip {...TT} formatter={(v: number) => money(v, cur)} cursor={{ fill: "var(--chart-cursor)" }} />
-                  <Bar dataKey="value" fill="#4fb8ab" radius={[0, 4, 4, 0]} barSize={14} />
+                  <Bar dataKey="value" fill="#3b82f6" radius={[0, 4, 4, 0]} barSize={14} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -405,7 +405,7 @@ function Scenarios({ fin, today, cur, settings }: { fin: Fin; today: string; cur
               <ReferenceLine y={0} stroke="#f87171" strokeDasharray="4 4" />
               <Line dataKey="No new income" stroke="#f87171" strokeWidth={1.5} dot={false} strokeDasharray="5 4" />
               <Line dataKey="Conservative" stroke="#c7b37f" strokeWidth={1.5} dot={false} />
-              <Line dataKey="Baseline" stroke="#4fb8ab" strokeWidth={2.5} dot={false} />
+              <Line dataKey="Baseline" stroke="#3b82f6" strokeWidth={2.5} dot={false} />
               <Line dataKey="Optimistic" stroke="#6aa3ff" strokeWidth={1.5} dot={false} />
               <Line dataKey="Debt (baseline)" stroke="#e0a36a" strokeWidth={1.5} dot={false} strokeDasharray="2 3" />
               <Legend wrapperStyle={{ fontSize: 11 }} />

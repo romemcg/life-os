@@ -174,7 +174,7 @@ export default function RelationshipsPage() {
             <Card title="Coming up">
               {birthdays.length === 0 && plans.length === 0 ? <p className="text-sm muted">No birthdays in the next 30 days and no plans yet.</p> : (
                 <ul className="space-y-2 text-sm">
-                  {birthdays.map(({ p, next }) => <li key={`b${p.id}`} className="flex items-center gap-2"><Cake size={14} className="text-violet-300" /><span className="flex-1">{p.name}&apos;s birthday</span><Badge tone="violet">{relativeDay(next!, today)}</Badge></li>)}
+                  {birthdays.map(({ p, next }) => <li key={`b${p.id}`} className="flex items-center gap-2"><Cake size={14} className="text-fog-400" /><span className="flex-1">{p.name}&apos;s birthday</span><Badge tone="violet">{relativeDay(next!, today)}</Badge></li>)}
                   {plans.map((c) => <li key={c.id} className="flex items-center gap-2"><CalendarHeart size={14} className="text-teal-300" /><span className="min-w-0 flex-1 truncate">{c.note || "Plan"}{c.person_id ? ` · ${people.rows.find((p) => p.id === c.person_id)?.name ?? ""}` : ""}</span><Badge>{relativeDay(c.date, today)}</Badge></li>)}
                 </ul>
               )}

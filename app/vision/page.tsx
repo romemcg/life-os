@@ -51,7 +51,7 @@ export default function VisionPage() {
       <PageHeader
         title="Vision"
         subtitle="Your life areas, in one place. Open an area to see its milestones, then open a milestone to plan its tasks. Everything is added and edited here."
-        actions={<button className="btn-primary" onClick={() => setEdit({ color: "#4fb8ab", stage_weight: 0.5, sort: t.pillars.length })}><Plus size={15} /> Life area</button>}
+        actions={<button className="btn-primary" onClick={() => setEdit({ color: "#3b82f6", stage_weight: 0.5, sort: t.pillars.length })}><Plus size={15} /> Life area</button>}
       />
       <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={onFile} />
 
@@ -106,7 +106,7 @@ function AreaCard({ a, later, onImage, onEdit }: { a: Area; later?: boolean; onI
       ) : (
         <div className="absolute inset-0 -z-10" style={{ background: `radial-gradient(120% 80% at 20% 0%, ${p.color}66, transparent 60%), linear-gradient(180deg, rgb(var(--ink-800)), rgb(var(--ink-850)))` }} />
       )}
-      <div className="pointer-events-none absolute inset-0 -z-10" style={{ background: "linear-gradient(to top, rgba(4,30,32,0.96) 0%, rgba(4,30,32,0.8) 26%, rgba(4,30,32,0.3) 52%, rgba(4,30,32,0) 74%)" }} />
+      <div className="pointer-events-none absolute inset-0 -z-10" style={{ background: "linear-gradient(to top, rgba(7,14,28,0.92) 0%, rgba(7,14,28,0.72) 26%, rgba(7,14,28,0.25) 52%, rgba(7,14,28,0) 74%)" }} />
       <Link href={`/vision/${p.id}`} className="absolute inset-0 z-0 rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-teal-400" aria-label={`Open ${p.name}`} />
 
       {(a.locked || a.always) && (
@@ -125,7 +125,7 @@ function AreaCard({ a, later, onImage, onEdit }: { a: Area; later?: boolean; onI
           {a.tasksOpen > 0 && <span>{a.tasksOpen} open task{a.tasksOpen === 1 ? "" : "s"}</span>}
         </div>
         <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/20" role="progressbar" aria-valuenow={Math.round(pct)} aria-valuemin={0} aria-valuemax={100} aria-label={`${p.name} progress`}>
-          <div className="h-full rounded-full transition-all duration-700" style={{ width: `${Math.max(pct, a.total ? 4 : 0)}%`, background: `linear-gradient(90deg, ${p.color}, #ffffffcc)` }} />
+          <div className="h-full rounded-full transition-all duration-700" style={{ width: `${Math.max(pct, a.total ? 4 : 0)}%`, background: "rgba(255,255,255,0.9)" }} />
         </div>
         {!later && a.next && <p className="mt-2.5 line-clamp-2 border-t border-white/15 pt-2 text-xs leading-snug text-white/90">Next: {a.next.title}</p>}
       </div>

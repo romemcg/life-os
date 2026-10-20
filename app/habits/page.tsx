@@ -96,7 +96,7 @@ function MetricCharts({ rows, onEdit }: { rows: Row[]; onEdit: (r: Row) => void 
                   <XAxis dataKey="d" hide />
                   <YAxis stroke="var(--chart-axis)" fontSize={10} tickLine={false} axisLine={false} width={30} domain={["auto", "auto"]} />
                   <Tooltip contentStyle={{ background: "var(--chart-tip-bg)", border: "1px solid var(--chart-tip-border)", borderRadius: 8, fontSize: 12 }} />
-                  <Line dataKey="v" name={k.label} stroke="#7fd18a" strokeWidth={2} dot={data.length < 15} />
+                  <Line dataKey="v" name={k.label} stroke="#2563eb" strokeWidth={2} dot={data.length < 15} />
                 </LineChart>
               </ResponsiveContainer>
             </div>

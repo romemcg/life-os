@@ -39,9 +39,8 @@ function Links({ onClick }: { onClick?: () => void }) {
         const on = active === g;
         const Icon = g.icon;
         return (
-          <Link key={g.label} href={g.href} onClick={onClick} aria-current={on ? "page" : undefined} className={clsx("relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-[15px] transition-colors", on ? "bg-gradient-to-r from-teal-500/15 to-teal-500/5 font-semibold text-teal-300" : "font-medium text-fog-400 hover:bg-ink-800 hover:text-fog-100")}>
-            {on && <span className="absolute -left-3 top-1/2 h-5 w-1 -translate-y-1/2 rounded-r-full bg-teal-500" aria-hidden />}
-            <Icon size={19} strokeWidth={on ? 2.3 : 1.9} />
+          <Link key={g.label} href={g.href} onClick={onClick} aria-current={on ? "page" : undefined} className={clsx("relative flex items-center gap-3 rounded-full px-3.5 py-2.5 text-[15px] transition-all duration-200", on ? "bg-teal-400/10 font-semibold text-teal-300 ring-1 ring-teal-400/20" : "font-medium text-fog-400 hover:bg-fog-100/[0.06] hover:text-fog-100")}>
+                        <Icon size={19} strokeWidth={on ? 2.3 : 1.9} />
             {g.label}
           </Link>
         );
@@ -56,11 +55,11 @@ export function SubNav() {
   const g = groupFor(path);
   if (!g?.subs) return null;
   return (
-    <div className="mb-5 -mt-1 inline-flex max-w-full gap-1 overflow-x-auto rounded-xl border border-ink-700/80 bg-ink-900 p-1">
+    <div className="mb-6 -mt-1 inline-flex max-w-full gap-1 overflow-x-auto rounded-full border border-ink-700/80 bg-ink-900/80 p-1 shadow-[var(--shadow-card)] backdrop-blur">
       {g.subs.map((s) => {
         const on = matches(path, s.href);
         return (
-          <Link key={s.href} href={s.href} className={clsx("whitespace-nowrap rounded-lg px-3.5 py-1.5 text-sm font-medium transition-all duration-200", on ? "bg-gradient-to-br from-teal-400 to-teal-600 text-white" : "text-fog-400 hover:bg-ink-800 hover:text-fog-100")}>
+          <Link key={s.href} href={s.href} className={clsx("whitespace-nowrap rounded-full px-4 py-1.5 text-sm font-semibold transition-all duration-200", on ? "bg-fog-100 text-ink-900" : "text-fog-400 hover:bg-fog-100/[0.07] hover:text-fog-100")}>
             {s.label}
           </Link>
         );
@@ -87,7 +86,7 @@ export function Nav() {
         </div>
       </aside>
 
-      <header className="sticky top-0 z-30 flex items-center justify-between border-b border-ink-700/80 bg-ink-900/95 px-4 py-3 backdrop-blur lg:hidden">
+      <header className="sticky top-0 z-30 flex items-center justify-between border-b border-ink-700/60 bg-ink-950/80 px-4 py-3 backdrop-blur-md lg:hidden">
         <Brand />
         <div className="flex items-center gap-2">
           <FocusPill />
@@ -112,7 +111,7 @@ export function Nav() {
           const on = active === g;
           if (g.label === "Today") return (
             <Link key={g.label} href={g.href} className="flex flex-col items-center pb-1.5">
-              <span className={clsx("-mt-5 grid h-14 w-14 place-items-center rounded-2xl text-white shadow-md ring-4 ring-ink-950 transition-transform active:scale-95", on ? "scale-105" : "")} style={{ background: "linear-gradient(135deg, rgb(var(--teal-400)), rgb(var(--teal-600)))" }}><Icon size={22} /></span>
+              <span className={clsx("-mt-5 grid h-14 w-14 place-items-center rounded-2xl text-white shadow-md ring-4 ring-ink-950 transition-transform active:scale-95", on ? "scale-105" : "")} style={{ background: "rgb(var(--teal-400))" }}><Icon size={22} /></span>
               <span className={clsx("mt-1 text-[10px] font-semibold", on ? "text-teal-300" : "text-fog-400")}>Today</span>
             </Link>
           );
@@ -142,7 +141,7 @@ function SideStreak() {
   const st = useStreak(today, 7);
   if (st.loading) return null;
   return (
-    <div className="rounded-xl border border-ink-700/70 bg-ink-850/70 p-3">
+    <div className="rounded-2xl border border-ink-700/70 bg-ink-850/70 p-3">
       <StreakPill current={st.current} todayDone={st.todayDone} />
       <div className="mt-2.5 flex gap-1" aria-label="Last 7 days">
         {st.grid.map((g) => <span key={g.date} title={g.date} className={clsx("h-1.5 flex-1 rounded-full", g.active ? "bg-teal-500" : "bg-ink-700")} />)}

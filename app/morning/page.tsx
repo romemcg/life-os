@@ -203,8 +203,8 @@ function Meditation({ today, tz }: { today: string; tz: string }) {
         </div>
         {left === null ? (
           <>
-            <div className="flex flex-wrap justify-center gap-1">{[3, 5, 10, 15, 20].map((m) => <button key={m} onClick={() => setMins(m)} className={clsx("rounded-md border px-2.5 py-1 text-xs", mins === m ? "border-teal-400 bg-teal-500/15 text-teal-200" : "border-ink-600 text-fog-400")}>{m} min</button>)}</div>
-            <div className="mt-2 flex flex-wrap justify-center gap-1">{KINDS.map((k) => <button key={k.value} onClick={() => setKind(k.value)} className={clsx("chip px-2 py-0.5", kind === k.value ? "border-teal-500/40 bg-teal-500/10 text-teal-300" : "border-ink-600 text-fog-400")}>{k.value === "breathing" && <Wind size={11} />}{k.label}</button>)}</div>
+            <div className="flex flex-wrap justify-center gap-1">{[3, 5, 10, 15, 20].map((m) => <button key={m} onClick={() => setMins(m)} className={clsx("rounded-full border px-3 py-1 text-xs font-semibold transition-colors", mins === m ? "border-fog-100 bg-fog-100 text-ink-900" : "border-ink-600 text-fog-300 hover:border-fog-400")}>{m} min</button>)}</div>
+            <div className="mt-2 flex flex-wrap justify-center gap-1">{KINDS.map((k) => <button key={k.value} onClick={() => setKind(k.value)} className={clsx("chip px-2.5 py-1 transition-colors", kind === k.value ? "border-fog-100 bg-fog-100 text-ink-900" : "border-ink-600 text-fog-300 hover:border-fog-400")}>{k.value === "breathing" && <Wind size={11} />}{k.label}</button>)}</div>
             <button className="btn-primary mt-3" onClick={start}><Play size={15} /> Begin</button>
             {kind === "breathing" && <p className="mt-2 text-center text-[11px] muted">Box breathing: in 4, hold 4, out 4, hold 4.</p>}
           </>

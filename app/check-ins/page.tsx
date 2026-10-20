@@ -46,10 +46,10 @@ export default function CheckInsPage() {
     <div>
       <PageHeader title="Check-ins" subtitle="Log as many as you like through the day. Patterns show up over weeks, not days." actions={<Segmented value={range} onChange={setRange} size="sm" options={[{ value: "7", label: "7 days" }, { value: "30", label: "30 days" }, { value: "90", label: "90 days" }, { value: "all", label: "All" }]} />} />
       <div className="stagger mb-5 grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <Tile icon={<MessageCircleHeart size={18} />} color="#6366f1" label="Check-ins" value={rows.length} />
-        <Tile icon={<CalendarCheck size={18} />} color="#14b09e" label="Days checked in" value={new Set(rows.map((r) => r.date)).size} />
+        <Tile icon={<MessageCircleHeart size={18} />} color="#64748b" label="Check-ins" value={rows.length} />
+        <Tile icon={<CalendarCheck size={18} />} color="#64748b" label="Days checked in" value={new Set(rows.map((r) => r.date)).size} />
         <Tile icon={<span className="text-xl leading-none">{mAvg != null ? MOOD[Math.round(mAvg) - 1].emoji : "·"}</span>} color={mAvg != null ? MOOD[Math.round(mAvg) - 1].color : "#94a3b8"} label="Average mood" value={mAvg != null ? mAvg.toFixed(1) : "–"} hint={mAvg != null ? MOOD[Math.round(mAvg) - 1].label : undefined} soft />
-        <Tile icon={eAvg != null ? <Bars n={Math.round(eAvg)} color="#fff" size={18} /> : <span>·</span>} color={eAvg != null ? ENERGY[Math.round(eAvg) - 1].color : "#94a3b8"} label="Average energy" value={eAvg != null ? eAvg.toFixed(1) : "–"} hint={eAvg != null ? ENERGY[Math.round(eAvg) - 1].label : undefined} />
+        <Tile icon={eAvg != null ? <Bars n={Math.round(eAvg)} color={ENERGY[Math.round(eAvg) - 1].color} size={18} /> : <span>·</span>} color={eAvg != null ? ENERGY[Math.round(eAvg) - 1].color : "#94a3b8"} label="Average energy" value={eAvg != null ? eAvg.toFixed(1) : "–"} hint={eAvg != null ? ENERGY[Math.round(eAvg) - 1].label : undefined} />
       </div>
       <div className="grid gap-4 lg:grid-cols-3">
         <div className="space-y-5 lg:col-span-2">
@@ -70,21 +70,21 @@ export default function CheckInsPage() {
           ))}
         </div>
         <div className="space-y-4">
-          <Card title="Mood and energy" action={<span className="flex items-center gap-3 text-[11px] muted"><span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-[#14b09e]" />Mood</span><span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-[#6366f1]" />Energy</span></span>}>
+          <Card title="Mood and energy" action={<span className="flex items-center gap-3 text-[11px] muted"><span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-[#2563eb]" />Mood</span><span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-[#6366f1]" />Energy</span></span>}>
             {rows.length < 2 ? <p className="text-sm muted">Your trend appears after a few check-ins.</p> : (
               <div className="h-52">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={chart} margin={{ left: -10, right: 4, top: 6 }}>
                     <defs>
-                      <linearGradient id="gMood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#14b09e" stopOpacity={0.35} /><stop offset="1" stopColor="#14b09e" stopOpacity={0} /></linearGradient>
-                      <linearGradient id="gEnergy" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#6366f1" stopOpacity={0.25} /><stop offset="1" stopColor="#6366f1" stopOpacity={0} /></linearGradient>
+                      <linearGradient id="gMood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#2563eb" stopOpacity={0.35} /><stop offset="1" stopColor="#2563eb" stopOpacity={0} /></linearGradient>
+                      <linearGradient id="gEnergy" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#0ea5e9" stopOpacity={0.25} /><stop offset="1" stopColor="#0ea5e9" stopOpacity={0} /></linearGradient>
                     </defs>
                     <CartesianGrid stroke="var(--chart-grid)" vertical={false} />
                     <XAxis dataKey="d" stroke="var(--chart-axis)" fontSize={10} tickLine={false} axisLine={false} interval="preserveStartEnd" />
                     <YAxis domain={[1, 5]} ticks={[1, 3, 5]} stroke="var(--chart-axis)" fontSize={10} tickLine={false} axisLine={false} width={30} />
                     <Tooltip contentStyle={{ background: "var(--chart-tip-bg)", border: "1px solid var(--chart-tip-border)", borderRadius: 12, fontSize: 12 }} />
-                    <Area dataKey="Mood" type="monotone" stroke="#14b09e" strokeWidth={2.5} fill="url(#gMood)" connectNulls dot={{ r: 3, fill: "#14b09e" }} />
-                    <Area dataKey="Energy" type="monotone" stroke="#6366f1" strokeWidth={2.5} fill="url(#gEnergy)" connectNulls dot={{ r: 3, fill: "#6366f1" }} />
+                    <Area dataKey="Mood" type="monotone" stroke="#2563eb" strokeWidth={2.5} fill="url(#gMood)" connectNulls dot={{ r: 3, fill: "#2563eb" }} />
+                    <Area dataKey="Energy" type="monotone" stroke="#0ea5e9" strokeWidth={2.5} fill="url(#gEnergy)" connectNulls dot={{ r: 3, fill: "#0ea5e9" }} />
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
@@ -92,7 +92,7 @@ export default function CheckInsPage() {
           </Card>
           <Card title="Most common feelings">
             {tagCounts.length === 0 ? <p className="text-sm muted">Tap feelings when you check in to see patterns.</p> : (
-              <ul className="space-y-2.5">{tagCounts.map(([t, n]) => { const f = feeling(t); const c = f?.tone === "neg" ? "#f43f5e" : "#14b09e"; return (
+              <ul className="space-y-2.5">{tagCounts.map(([t, n]) => { const f = feeling(t); const c = f?.tone === "neg" ? "#f43f5e" : "#2563eb"; return (
                 <li key={t}>
                   <div className="mb-1 flex items-center justify-between text-sm"><span className="flex items-center gap-1.5"><span>{f?.emoji}</span>{t}</span><span className="text-xs font-semibold tabnum muted">{n}</span></div>
                   <div className="h-2 overflow-hidden rounded-full bg-ink-800"><div className="h-full rounded-full transition-all duration-700" style={{ width: `${(n / tagCounts[0][1]) * 100}%`, background: `linear-gradient(90deg, ${c}99, ${c})` }} /></div>
@@ -108,7 +108,7 @@ export default function CheckInsPage() {
 function Tile({ icon, color, label, value, hint, soft }: { icon: React.ReactNode; color: string; label: string; value: React.ReactNode; hint?: string; soft?: boolean }) {
   return (
     <div className="card card-hover flex items-center gap-3 p-4">
-      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl text-white shadow-md" style={soft ? { background: `${color}26` } : { background: `linear-gradient(135deg, ${color}, ${color}cc)`, boxShadow: `0 8px 16px -8px ${color}` }}>{icon}</span>
+      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl" style={{ background: `${color}1f`, color }}>{icon}</span>
       <div className="min-w-0">
         <div className="text-2xl font-bold leading-none tracking-tight tabnum">{value}</div>
         <div className="mt-1 truncate text-[11px] muted">{label}{hint ? <span style={{ color }}> · {hint}</span> : null}</div>

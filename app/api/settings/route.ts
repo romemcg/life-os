@@ -4,7 +4,7 @@ import { json, err } from "@/lib/server";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const ALLOWED = new Set(["birth_date", "start_date", "timezone", "currency", "life_phase", "day_mode", "weekly_app_target", "weekly_outreach_target", "wake_time", "display_name", "ef_months", "cash_buffer", "rel_values", "rel_boundaries", "rel_partner", "coach_model", "bible_plan", "bible_translation", "meditation_default"]);
+const ALLOWED = new Set(["birth_date", "start_date", "timezone", "currency", "life_phase", "day_mode", "weekly_app_target", "weekly_outreach_target", "wake_time", "display_name", "ef_months", "cash_buffer", "rel_values", "rel_boundaries", "rel_partner", "coach_model", "bible_plan", "bible_translation", "meditation_default", "notify_enabled", "notify_lead_min"]);
 
 export async function GET() {
   const s = getSettings(getDb());

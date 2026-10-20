@@ -29,11 +29,11 @@ export function StreakPill({ current, todayDone, className, onHero }: { current:
   return (
     <span
       title={todayDone ? "Today counts. Keep it going tomorrow." : current ? "Complete one task today to keep it alive." : "Complete any task to start."}
-      className={clsx("inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold", onHero ? "bg-white/15 text-white ring-1 ring-white/20" : "bg-orange-500/10 text-orange-600 ring-1 ring-orange-500/20 dark-flame", className)}
+      className={clsx("inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold", onHero ? "bg-white/15 text-white ring-1 ring-white/20" : "bg-ink-900 text-fog-300 ring-1 ring-ink-700", className)}
     >
-      <Flame size={14} className={clsx(current > 0 && "flame", onHero && "!text-amber-200")} fill={current > 0 ? "currentColor" : "none"} />
+      <Flame size={14} className={clsx(current > 0 ? "flame text-orange-500" : "text-fog-500", onHero && "!text-amber-200")} fill={current > 0 ? "currentColor" : "none"} />
       {label}
-      {current > 0 && !todayDone && <span className={clsx("rounded-full px-1.5 text-[10px]", onHero ? "bg-amber-300/30" : "bg-orange-500/15")}>at risk</span>}
+      {current > 0 && !todayDone && <span className={clsx("rounded-full px-1.5 text-[10px]", onHero ? "bg-amber-300/30" : "bg-orange-500/10 text-orange-600")}>at risk</span>}
     </span>
   );
 }
@@ -91,7 +91,7 @@ function Metric({ icon, value, label, tone }: { icon?: ReactNode; value: ReactNo
   );
 }
 
-const COLORS = ["#14b09e", "#6366f1", "#f59e0b", "#ec4899", "#22c55e", "#0ea5e9"];
+const COLORS = ["#2563eb", "#6366f1", "#f59e0b", "#ec4899", "#22c55e", "#0ea5e9"];
 /** Brief celebratory burst. Renders nothing when reduced motion is preferred. */
 export function Confetti({ fire }: { fire: number }) {
   const [pieces, setPieces] = useState<{ id: number; style: React.CSSProperties }[]>([]);

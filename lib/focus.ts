@@ -108,4 +108,4 @@ export const fmtClock = (ms: number) => {
   return `${String(Math.floor(t / 60)).padStart(2, "0")}:${String(t % 60).padStart(2, "0")}`;
 };
 export const PHASE_LABEL: Record<Phase, string> = { focus: "Focus", short: "Short break", long: "Long break" };
-export const PHASE_COLOR: Record<Phase, string> = { focus: "#13a08f", short: "#3b8fd9", long: "#7c5cd6" };
+export const PHASE_COLOR: Record<Phase, string> = { focus: "#2563eb", short: "#0ea5e9", long: "#7c5cd6" };

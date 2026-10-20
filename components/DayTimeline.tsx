@@ -198,7 +198,7 @@ export function DayTimeline({ today, plan, tz, settings, save }: { today: string
                 <span className="w-0.5 flex-1" style={{ background: `${color}55` }} />
               </div>
               <div className={clsx("card group flex min-w-0 flex-1 items-center gap-3 p-3 transition-all", live && "ring-2 ring-teal-500/60", it.done && "opacity-60")}>
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl text-white shadow-sm" style={{ background: `linear-gradient(135deg, ${color}, ${color}bb)` }}>
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl" style={{ background: `${color}1f`, color }}>
                   {isRecurring(t) ? <Repeat size={16} /> : <CalendarDays size={16} />}
                 </span>
                 <div role="button" tabIndex={0} title="Edit task" onClick={() => setEdit(t)} onKeyDown={(ev) => { if (ev.key === "Enter") setEdit(t); }} className="min-w-0 flex-1 cursor-pointer">
@@ -238,9 +238,9 @@ function AnchorRow({ wakeEv, time, onSave }: { wakeEv: boolean; time: string; on
   return (
     <li className="flex items-stretch gap-3 py-1">
       <div className="flex w-[68px] shrink-0 items-center justify-end text-[12px] font-semibold tabnum">{to12(time)}</div>
-      <div className="flex w-3 shrink-0 flex-col items-center justify-center"><span className={clsx("h-3 w-3 rounded-full ring-4", wakeEv ? "bg-amber-400 ring-amber-400/25" : "bg-indigo-500 ring-indigo-500/25")} /></div>
-      <div className="card flex flex-1 items-center gap-3 p-3" style={{ background: wakeEv ? "linear-gradient(90deg, rgba(251,191,36,0.12), transparent 60%)" : "linear-gradient(90deg, rgba(99,102,241,0.12), transparent 60%)" }}>
-        <span className={clsx("grid h-10 w-10 place-items-center rounded-xl", wakeEv ? "bg-amber-400/20 text-amber-500" : "bg-indigo-500/15 text-indigo-500")}>{wakeEv ? <Sun size={18} /> : <Moon size={18} />}</span>
+      <div className="flex w-3 shrink-0 flex-col items-center justify-center"><span className={clsx("h-3 w-3 rounded-full ring-4", wakeEv ? "bg-amber-400 ring-amber-400/25" : "bg-fog-500 ring-fog-500/25")} /></div>
+      <div className="card flex flex-1 items-center gap-3 p-3">
+        <span className={clsx("grid h-10 w-10 place-items-center rounded-xl", wakeEv ? "bg-amber-400/20 text-amber-500" : "bg-ink-800 text-fog-400")}>{wakeEv ? <Sun size={18} /> : <Moon size={18} />}</span>
         <div className="min-w-0 flex-1">
           <div className="text-sm font-semibold">{wakeEv ? "Wake up" : "Wind down and sleep"}</div>
           {edit ? (

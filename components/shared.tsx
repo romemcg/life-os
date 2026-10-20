@@ -96,7 +96,7 @@ export function statusTone(s?: string) {
 }
 
 export const PILLAR_COLORS = [
-  { value: "#4fb8ab", label: "Teal" }, { value: "#6aa3ff", label: "Blue" }, { value: "#c7b37f", label: "Gold" },
+  { value: "#3b82f6", label: "Teal" }, { value: "#6aa3ff", label: "Blue" }, { value: "#c7b37f", label: "Gold" },
   { value: "#7fd18a", label: "Green" }, { value: "#e08fb0", label: "Pink" }, { value: "#b48ef0", label: "Purple" },
   { value: "#f0a36a", label: "Orange" }, { value: "#8fb8c9", label: "Slate" }, { value: "#d9d36a", label: "Yellow" },
   { value: "#ef7f7f", label: "Red" },

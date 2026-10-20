@@ -7,6 +7,7 @@ import { RecordForm } from "@/components/RecordForm";
 import { PILLAR_FIELDS } from "@/components/shared";
 import { ageOn, isISODate } from "@/lib/dates";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { ReminderSettings } from "@/components/ReminderSettings";
 
 const FIELDS: { key: string; label: string; type?: string; help?: string }[] = [
   { key: "display_name", label: "Name" },
@@ -86,7 +87,8 @@ export default function SettingsPage() {
               <ThemeToggle />
             </div>
           </Card>
-          <Card title="Life areas (pillars)" action={<button className="btn-ghost px-2 py-1 text-xs" onClick={() => setPillarEdit({ color: "#4fb8ab", stage_weight: 0.5, sort: pillars.rows.length })}><Plus size={14} /> Add</button>}>
+          <ReminderSettings />
+          <Card title="Life areas (pillars)" action={<button className="btn-ghost px-2 py-1 text-xs" onClick={() => setPillarEdit({ color: "#3b82f6", stage_weight: 0.5, sort: pillars.rows.length })}><Plus size={14} /> Add</button>}>
             <p className="mb-3 text-xs muted">Rename, recolour or describe an area with the pencil. The slider sets how much it pulls on your day right now; changes apply immediately to Today.</p>
             <ul className="space-y-2.5">
               {pillars.rows.map((p) => (

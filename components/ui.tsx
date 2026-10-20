@@ -43,11 +43,11 @@ export function Stat({ label, value, hint, tone }: { label: string; value: React
   );
 }
 
-export function Progress({ value, className, color = "#4fb8ab" }: { value: number; className?: string; color?: string }) {
+export function Progress({ value, className, color = "rgb(var(--teal-400))" }: { value: number; className?: string; color?: string }) {
   const v = Math.max(0, Math.min(100, value || 0));
   return (
     <div className={clsx("h-2 w-full overflow-hidden rounded-full bg-ink-700/70", className)} role="progressbar" aria-valuenow={v} aria-valuemin={0} aria-valuemax={100}>
-      <div className="h-full rounded-full transition-all duration-700 ease-out" style={{ width: `${v}%`, background: /^#[0-9a-f]{6}$/i.test(color) ? `linear-gradient(90deg, ${color}b3, ${color})` : `linear-gradient(90deg, rgb(var(--teal-400)), ${color})` }} />
+      <div className="h-full rounded-full transition-all duration-700 ease-out" style={{ width: `${v}%`, background: color }} />
     </div>
   );
 }

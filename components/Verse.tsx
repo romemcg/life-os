@@ -25,7 +25,6 @@ export function VerseCard({ today, translation, compact }: { today: string; tran
   const v = usePassage(ref, translation);
   return (
     <section className={clsx("card fade-up relative overflow-hidden", compact ? "p-4" : "p-5 sm:p-6")}>
-      <div className="pointer-events-none absolute -right-8 -top-10 h-40 w-40 rounded-full bg-teal-500/10 blur-2xl" />
       <div className="flex items-center gap-2 text-xs font-semibold text-fog-400"><Sunrise size={14} className="text-teal-400" />Verse of the day</div>
       {v.loading ? <p className="mt-3 text-sm muted">Loading…</p> : v.error ? (
         <p className="mt-3 text-lg font-medium">{ref}<span className="mt-1 block text-xs font-normal muted">{v.error}</span></p>

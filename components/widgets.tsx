@@ -18,7 +18,7 @@ export function WeeklyTargets({ today, settings }: { today: string; settings: Re
   const ot = Number(settings.weekly_outreach_target || 5);
   const daysLeft = diffDays(today, sun);
   const items = [
-    { label: "Targeted applications", icon: Send, n: appsThisWeek, t: at, color: "#14b09e", href: "/career" },
+    { label: "Targeted applications", icon: Send, n: appsThisWeek, t: at, color: "#2563eb", href: "/career" },
     { label: "Networking and outreach", icon: Users, n: outreach, t: ot, color: "#6366f1", href: "/career" },
   ];
   return (

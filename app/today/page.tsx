@@ -87,9 +87,9 @@ export default function TodayPage() {
   }, [allDone, plan.loading, today]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const modeCards: { value: DayMode; Icon: typeof Zap; color: string }[] = [
-    { value: "minimum", Icon: BatteryLow, color: "#f59e0b" },
-    { value: "standard", Icon: Zap, color: "#14b09e" },
-    { value: "deep", Icon: Target, color: "#6366f1" },
+    { value: "minimum", Icon: BatteryLow, color: "#2563eb" },
+    { value: "standard", Icon: Zap, color: "#2563eb" },
+    { value: "deep", Icon: Target, color: "#2563eb" },
   ];
   const focusTasks = plan.planned.map((p) => p.task as Row);
 

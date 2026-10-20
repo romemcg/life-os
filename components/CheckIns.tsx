@@ -25,7 +25,7 @@ export const MOOD = [
   { n: 2, emoji: "😕", label: "Low", color: "#f97316" },
   { n: 3, emoji: "😐", label: "Okay", color: "#eab308" },
   { n: 4, emoji: "🙂", label: "Good", color: "#22c55e" },
-  { n: 5, emoji: "😄", label: "Great", color: "#14b09e" },
+  { n: 5, emoji: "😄", label: "Great", color: "#2563eb" },
 ];
 export const ENERGY = [
   { n: 1, label: "Drained", color: "#f43f5e" },
@@ -80,7 +80,7 @@ function Picker({ label, value, onChange, kind }: { label: string; value: number
 function Prompt({ icon, color, label, value, onChange, placeholder, multiline }: { icon: React.ReactNode; color: string; label: string; value: string; onChange: (v: string) => void; placeholder?: string; multiline?: boolean }) {
   return (
     <label className="flex gap-3 rounded-2xl border border-ink-700 bg-ink-850/50 p-3 transition-all focus-within:border-teal-500 focus-within:bg-ink-900 focus-within:ring-4 focus-within:ring-teal-500/10">
-      <span className="grid h-8 w-8 shrink-0 place-items-center rounded-xl text-white" style={{ background: color }}>{icon}</span>
+      <span className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-ink-800 text-fog-400" data-c={color}>{icon}</span>
       <span className="min-w-0 flex-1">
         <span className="block text-xs font-semibold text-fog-300">{label}</span>
         {multiline
@@ -145,7 +145,7 @@ export function CheckInForm({ date, tz, initial, onDone, compact }: { date: stri
       </div>
 
       <div className="grid gap-2.5 sm:grid-cols-2">
-        <Prompt icon={<Trophy size={15} />} color="#14b09e" label="One thing that went right" value={win} onChange={setWin} placeholder="Evidence, not vibes" />
+        <Prompt icon={<Trophy size={15} />} color="#2563eb" label="One thing that went right" value={win} onChange={setWin} placeholder="Evidence, not vibes" />
         <Prompt icon={<Construction size={15} />} color="#f97316" label="What got in the way" value={blocker} onChange={setBlocker} placeholder="Name it, then let it go" />
         {more && <>
           {!compact && <Prompt icon={<Heart size={15} />} color="#ec4899" label="Grateful for" value={gratitude} onChange={setGratitude} placeholder="Small things count" />}
@@ -172,9 +172,9 @@ export function CheckInItem({ c, tz, showDate, last }: { c: Row; tz: string; sho
   const en = c.energy ? ENERGY[c.energy - 1] : null;
   if (editing) return <div className="card card-pad"><CheckInForm date={c.date} tz={tz} initial={c} onDone={() => setEditing(false)} /></div>;
   const lines: [React.ReactNode, string, string][] = [];
-  if (c.win) lines.push([<Trophy key="w" size={13} />, "#14b09e", c.win]);
-  if (c.blocker) lines.push([<Construction key="b" size={13} />, "#f97316", c.blocker]);
-  if (c.gratitude) lines.push([<Heart key="g" size={13} />, "#ec4899", c.gratitude]);
+  if (c.win) lines.push([<Trophy key="w" size={13} />, "#8391ab", c.win]);
+  if (c.blocker) lines.push([<Construction key="b" size={13} />, "#8391ab", c.blocker]);
+  if (c.gratitude) lines.push([<Heart key="g" size={13} />, "#8391ab", c.gratitude]);
   return (
     <div className="group relative flex gap-3">
       <div className="flex flex-col items-center">

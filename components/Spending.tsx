@@ -22,7 +22,7 @@ export const CAT_META: Record<string, { icon: typeof Banknote; color: string }> 
   Telecom: { icon: Smartphone, color: "#8b5cf6" },
   Health: { icon: HeartPulse, color: "#f43f5e" },
   "Personal care": { icon: Sparkles, color: "#ec4899" },
-  "Family support": { icon: Users, color: "#14b09e" },
+  "Family support": { icon: Users, color: "#2563eb" },
   Fees: { icon: Receipt, color: "#64748b" },
 };
 export const catMeta = (c?: string | null) => CAT_META[c ?? ""] ?? { icon: CircleDot, color: "#94a3b8" };

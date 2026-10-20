@@ -5,7 +5,7 @@ import clsx from "clsx";
 
 export type ClimbStage = { id: number; name: string; short: string; pct: number; state: "done" | "now" | "later" };
 
-const DEEP = "#0a3337";
+const DEEP = "#0a162e";
 
 /**
  * The 2035 climb: six stair-steps, one per roadmap stage. Finished steps are filled, the current one fills as you
@@ -28,7 +28,7 @@ export function Climb({ stages, ageAtEnd }: { stages: ClimbStage[]; ageAtEnd: nu
               title={`${s.id}. ${s.name}`}
             >
               <div className={clsx("climb-step absolute inset-0 overflow-hidden rounded-t-xl bg-gradient-to-b from-white/[0.12] to-white/[0.05]", s.state === "now" && "ring-1 ring-sun/70")} style={{ "--i": i } as CSSProperties}>
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-b from-[#a6eadc] to-[#74cfbd] transition-[height] duration-1000" style={{ height: `${fill}%` }} />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-b from-[#7dd3fc] to-[#38bdf8] transition-[height] duration-1000" style={{ height: `${fill}%` }} />
               </div>
               <div className="climb-marker pointer-events-none absolute inset-x-0 top-1.5 px-0.5 text-center" style={{ color: onLight ? DEEP : s.state === "now" ? "#fff" : "rgba(255,255,255,0.5)", animationDelay: `${i * 90 + 500}ms` }}>
                 <div className="num text-lg leading-none sm:text-[22px]">{s.id}</div>

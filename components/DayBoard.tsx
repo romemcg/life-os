@@ -92,7 +92,7 @@ export function DayBoard({ today, plan, pillars, minimal }: {
     const color = (g.p?.color as string) ?? "#8c97ad";
     return (
       <section className="overflow-hidden rounded-2xl border border-ink-700/70 bg-ink-900/70 transition-shadow duration-200 hover:shadow-md">
-        <header className="flex items-center gap-2.5 border-b border-ink-800 px-3.5 py-3" style={{ background: /^#[0-9a-f]{6}$/i.test(color) ? `linear-gradient(90deg, ${color}14, transparent 70%)` : undefined }}>
+        <header className="flex items-center gap-2.5 border-b border-ink-800 px-3.5 py-3">
           <span className="h-3 w-3 rounded-full" style={{ background: color, boxShadow: `0 0 0 3px ${color}26` }} aria-hidden />
           <h3 className="text-sm font-semibold">{g.p ? (g.p.name as string) : "No life area"}</h3>
           {g.lockedAt !== undefined && <Badge tone="gray" title="This area belongs to a later stage">Stage {g.lockedAt}</Badge>}

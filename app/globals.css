@@ -2,71 +2,71 @@
 @tailwind components;
 @tailwind utilities;
 
-/* LIFE OS design tokens.
-   Palette: mist (page), paper (surfaces), lagoon (deep panels and ink), tide (actions), sun (the "you are here" marker). */
+/* LIFE OS design tokens, matched to mark-gomez.vercel.app.
+   Blue spectrum: navy ink, blue 600 accent, sky 500 highlight, white surfaces on a pale blue-grey page.
+   Token names are historical (teal = accent scale, ink = surfaces, fog = text) so every screen re-themes from here. */
 :root {
-  --font-sans: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
-  /* Headlines and big figures use the system serif (New York on Apple devices). */
-  --font-display: ui-serif, "New York", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-sans: var(--font-sans-face), "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-display-face), "Space Grotesk", system-ui, -apple-system, sans-serif;
   /* Dark theme (RGB channels so Tailwind opacity modifiers work) */
-  --ink-950: 7 19 21; --ink-900: 12 28 31; --ink-850: 16 36 39; --ink-800: 21 45 49; --ink-700: 32 60 64; --ink-600: 50 84 88;
-  --fog-100: 236 244 243; --fog-300: 187 204 203; --fog-400: 140 160 160; --fog-500: 104 124 125;
-  --teal-200: 153 236 222; --teal-300: 94 222 202; --teal-400: 45 200 180; --teal-500: 20 176 158; --teal-600: 14 140 126;
+  --ink-950: 7 14 28; --ink-900: 13 25 46; --ink-850: 11 21 40; --ink-800: 20 34 60; --ink-700: 30 46 76; --ink-600: 48 66 100;
+  --fog-100: 232 240 252; --fog-300: 190 204 226; --fog-400: 147 163 187; --fog-500: 110 126 152;
+  --teal-200: 191 219 254; --teal-300: 147 197 253; --teal-400: 96 165 250; --teal-500: 59 130 246; --teal-600: 37 99 235;
+  --sky: 56 189 248;
   --sun: 242 193 78;
-  --chart-grid: #1b3236; --chart-axis: #6b8284; --chart-tip-bg: #0c1c1f; --chart-tip-border: #26474b; --chart-cursor: #102427; --chart-label: #bbcccb;
-  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 8px 24px -12px rgba(0, 0, 0, 0.5);
-  --shadow-lift: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 16px 36px -14px rgba(0, 0, 0, 0.65);
-  --hero-from: #0a3337; --hero-to: #11555a;
+  --chart-grid: #1a2a47; --chart-axis: #7a8cab; --chart-tip-bg: #0d192e; --chart-tip-border: #263a5e; --chart-cursor: #12213b; --chart-label: #bfcde2;
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 10px 30px -14px rgba(0, 0, 0, 0.6);
+  --shadow-lift: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 18px 40px -16px rgba(0, 0, 0, 0.7);
+  --hero-from: #0b1730; --hero-to: #12264d;
   --flame: 251 146 60;
   color-scheme: dark;
 }
 html.light {
-  --ink-950: 242 245 243; --ink-900: 255 255 255; --ink-850: 248 250 249; --ink-800: 238 243 241; --ink-700: 224 231 228; --ink-600: 200 211 207;
-  --fog-100: 14 38 42; --fog-300: 44 68 72; --fog-400: 88 110 114; --fog-500: 124 142 144;
-  --teal-200: 8 70 72; --teal-300: 12 108 106; --teal-400: 18 148 140; --teal-500: 13 120 118; --teal-600: 8 92 94;
+  --ink-950: 246 248 252; --ink-900: 255 255 255; --ink-850: 250 251 254; --ink-800: 239 243 250; --ink-700: 225 231 242; --ink-600: 203 213 230;
+  --fog-100: 10 22 46; --fog-300: 44 58 86; --fog-400: 90 103 128; --fog-500: 130 142 164;
+  --teal-200: 30 58 138; --teal-300: 29 78 216; --teal-400: 37 99 235; --teal-500: 37 99 235; --teal-600: 30 64 175;
+  --sky: 14 165 233;
   --sun: 226 168 37;
-  --chart-grid: #e6ece9; --chart-axis: #86989a; --chart-tip-bg: #ffffff; --chart-tip-border: #dbe4e1; --chart-cursor: #eef3f1; --chart-label: #2c4448;
-  --shadow-card: 0 1px 2px rgba(14, 38, 42, 0.05);
-  --shadow-lift: 0 2px 4px rgba(14, 38, 42, 0.05), 0 12px 28px -12px rgba(14, 38, 42, 0.16);
-  --hero-from: #0a3337; --hero-to: #11555a;
+  --chart-grid: #e6ebf4; --chart-axis: #8391ab; --chart-tip-bg: #ffffff; --chart-tip-border: #dbe3f0; --chart-cursor: #eef2fa; --chart-label: #2c3a56;
+  --shadow-card: 0 1px 2px rgba(10, 22, 46, 0.04), 0 10px 30px -12px rgba(10, 22, 46, 0.12);
+  --shadow-lift: 0 2px 4px rgba(10, 22, 46, 0.05), 0 18px 40px -14px rgba(10, 22, 46, 0.2);
+  --hero-from: #0a162e; --hero-to: #142a57;
   --flame: 234 88 12;
   color-scheme: light;
 }
 
-html, body { background: rgb(var(--ink-950)); color: rgb(var(--fog-100)); }
-body {
-  -webkit-font-smoothing: antialiased;
-  background-image:
-    radial-gradient(1000px 520px at 90% -10%, rgb(var(--teal-400) / 0.11), transparent 62%),
-    radial-gradient(820px 480px at -8% 104%, rgb(var(--sun) / 0.08), transparent 60%);
-  background-attachment: fixed;
+/* Background lives on <html> only, so the fixed dot-grid canvas (z -10) shows through <body>. */
+html {
+  background-color: rgb(var(--ink-950));
 }
-h1, h2, h3, .font-display { font-family: var(--font-display); letter-spacing: -0.012em; }
-/* Big figures: serif, lining, tabular */
-.num { font-family: var(--font-display); font-variant-numeric: lining-nums tabular-nums; letter-spacing: -0.02em; }
+body { color: rgb(var(--fog-100)); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+h1, h2, h3, .font-display { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.03em; }
+/* Big figures: display face, tabular */
+.num { font-family: var(--font-display); font-variant-numeric: tabular-nums; letter-spacing: -0.03em; }
+:focus-visible { outline: 2px solid rgb(var(--teal-400)); outline-offset: 2px; }
 
 @layer components {
-  .card { @apply rounded-2xl border border-ink-700/80; background: linear-gradient(180deg, rgb(var(--ink-900)), rgb(var(--ink-850))); box-shadow: var(--shadow-card); }
-  .side-surface { background: linear-gradient(180deg, rgb(var(--ink-900)), rgb(var(--ink-850))); }
+  .card { @apply rounded-[20px] border border-ink-700/80 bg-ink-900; box-shadow: var(--shadow-card); }
+  .side-surface { background: rgb(var(--ink-900) / 0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
   .card-pad { @apply p-4 sm:p-5; }
-  .card-hover { @apply transition-colors duration-150; }
-  .card-hover:hover { border-color: rgb(var(--teal-500) / 0.45); }
-  .h-title { @apply text-[28px] font-semibold leading-tight text-fog-100 sm:text-[34px] sm:leading-[1.15]; }
-  .h-section { @apply text-[17px] font-semibold leading-snug text-fog-100; }
-  .eyebrow { @apply text-xs font-medium text-fog-400; }
+  .card-hover { transition: transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s, border-color .2s; }
+  .card-hover:hover { border-color: rgb(var(--teal-400) / 0.4); box-shadow: var(--shadow-lift); transform: translateY(-2px); }
+  .h-title { @apply text-[30px] font-semibold leading-[1.08] text-fog-100 sm:text-[38px]; letter-spacing: -0.035em; }
+  .h-section { @apply text-[17px] font-semibold leading-snug text-fog-100; font-family: var(--font-display); letter-spacing: -0.02em; }
+  .eyebrow { @apply text-[11px] font-semibold uppercase text-teal-400; letter-spacing: 0.16em; }
   .muted { @apply text-fog-400; }
-  .btn { @apply inline-flex items-center justify-center gap-1.5 rounded-xl px-3.5 py-2 text-sm font-medium transition-colors duration-150 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400/60; }
-  .btn-primary { @apply btn text-white; background: linear-gradient(135deg, rgb(var(--teal-400)), rgb(var(--teal-600))); box-shadow: 0 1px 2px rgb(var(--teal-600) / 0.35); }
-  .btn-primary:hover { filter: brightness(1.06); }
-  .btn-ghost { @apply btn text-fog-300 hover:bg-ink-800 hover:text-fog-100; }
-  .btn-outline { @apply btn border border-ink-600 bg-ink-900 text-fog-100 hover:border-teal-500/60 hover:bg-ink-850; }
+  .btn { @apply inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400/60; }
+  .btn-primary { @apply btn bg-fog-100 text-ink-900; }
+  .btn-primary:hover { background: rgb(var(--teal-400)); color: #fff; transform: translateY(-1px); }
+  .btn-ghost { @apply btn font-medium text-fog-300 hover:bg-fog-100/[0.07] hover:text-fog-100; }
+  .btn-outline { @apply btn border border-ink-600 bg-ink-900 text-fog-100 hover:border-fog-400 hover:bg-ink-850; }
   .btn-danger { @apply btn text-rose-500 hover:bg-rose-500/10; }
-  .input { @apply w-full rounded-xl border border-ink-600 bg-ink-900 px-3 py-2 text-sm text-fog-100 transition-shadow placeholder:text-fog-500 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/15; }
-  .label { @apply mb-1 block text-xs font-medium text-fog-300; }
-  .chip { @apply inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[11px] font-medium leading-4; }
+  .input { @apply w-full rounded-xl border border-ink-600 bg-ink-900 px-3 py-2 text-sm text-fog-100 transition-shadow placeholder:text-fog-500 focus:border-teal-400 focus:outline-none focus:ring-4 focus:ring-teal-400/15; }
+  .label { @apply mb-1 block text-xs font-semibold text-fog-300; }
+  .chip { @apply inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[11px] font-semibold leading-4; }
   .tabnum { font-variant-numeric: tabular-nums; }
   .text-gradient { color: rgb(var(--teal-400)); }
-  .hero { @apply relative overflow-hidden rounded-[28px] text-white; background: radial-gradient(520px 300px at 92% -6%, rgba(134, 220, 205, 0.22), transparent 62%), radial-gradient(460px 280px at -4% 108%, rgba(242, 193, 78, 0.12), transparent 60%), linear-gradient(135deg, var(--hero-from), var(--hero-to)); }
+  .hero { @apply relative overflow-hidden rounded-[24px] text-white; background: radial-gradient(640px 320px at 100% 0%, rgb(56 189 248 / 0.16), transparent 65%), linear-gradient(160deg, var(--hero-from), var(--hero-to)); }
   .hero-chip { @apply inline-flex items-center gap-1.5 rounded-full bg-white/15 px-2.5 py-1 text-[11px] font-semibold text-white ring-1 ring-white/20; }
 }
 

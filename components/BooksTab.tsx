@@ -194,7 +194,7 @@ function CurrentBook({ b, today, log, pillar, readHabit, onEdit, onFinish, toast
   return (
     <Card title={b.status === "reading" ? "Reading now" : `${fmtMonth(today)}'s book`} action={<button className="btn-ghost p-1" aria-label="Edit book" onClick={onEdit}><Pencil size={14} /></button>}>
       <div className="flex gap-4">
-        <div className="hidden h-28 w-20 shrink-0 flex-col justify-end rounded-md p-2 sm:flex" style={{ background: `linear-gradient(160deg, ${pillar?.color ?? "#4fb8ab"}, #156e66)` }}>
+        <div className="hidden h-28 w-20 shrink-0 flex-col justify-end rounded-md p-2 sm:flex" style={{ background: `linear-gradient(160deg, ${pillar?.color ?? "#3b82f6"}, #0a162e)` }}>
           <BookOpen size={18} className="text-white/80" />
         </div>
         <div className="min-w-0 flex-1">

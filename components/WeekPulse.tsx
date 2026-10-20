@@ -21,7 +21,7 @@ export type PulseRow = {
 };
 
 const S: Record<Status, { label: string; bar: string; chip: string; icon: string; hint: string }> = {
-  on: { label: "On track", bar: "#13a08f", chip: "border-teal-500/30 bg-teal-500/10 text-teal-300", icon: "bg-teal-500/10 text-teal-300", hint: "muted" },
+  on: { label: "On track", bar: "#2563eb", chip: "border-teal-500/30 bg-teal-500/10 text-teal-300", icon: "bg-teal-500/10 text-teal-300", hint: "muted" },
   watch: { label: "Watch", bar: "#e0a020", chip: "border-amber-400/30 bg-amber-400/10 text-amber-300", icon: "bg-amber-400/10 text-amber-300", hint: "text-amber-300" },
   behind: { label: "Behind", bar: "#e0445e", chip: "border-rose-400/30 bg-rose-400/10 text-rose-300", icon: "bg-rose-400/10 text-rose-300", hint: "text-rose-300" },
   none: { label: "Not started", bar: "#9aa8a8", chip: "border-ink-700 bg-ink-800 text-fog-300", icon: "bg-ink-800 text-fog-400", hint: "muted" },

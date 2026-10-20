@@ -263,7 +263,7 @@ function AlwaysOn({ ms, byId, onOpen }: { ms: Row[]; byId: Map<number, Row>; onO
   return (
     <Card title="Alongside every stage">
       <div className="flex items-start gap-2 text-sm">
-        <InfinityIcon size={16} className="mt-0.5 shrink-0 text-violet-300" />
+        <InfinityIcon size={16} className="mt-0.5 shrink-0 text-fog-400" />
         <p className="flex-1 text-fog-300">Health basics, faith, family and friends never wait for a stage. Keep them at a steady minimum through Habits, Morning and Relationships.</p>
       </div>
       {ms.length > 0 && <ul className="mt-3 flex flex-wrap gap-2">{ms.map((m) => <li key={m.id}><button onClick={() => onOpen(m)} className="chip border-ink-600 px-2.5 py-1 text-xs text-fog-300 hover:text-fog-100"><PillarDot color={byId.get(m.pillar_id)?.color} />{m.title}</button></li>)}</ul>}
